@@ -1,0 +1,31 @@
+server:
+  port: 84
+spring:
+  application:
+    name: nocas-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+# 消费者将要去访问的微服务名称（注册成功nacos的微服务提供者）
+service-url:
+  nacos-user-service: http://nocas-payment-provider
+
+# 激活sentinel對openfeign的支持
+feign:
+  sentinel:
+    enabled: true
